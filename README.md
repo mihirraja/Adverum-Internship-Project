@@ -8,21 +8,29 @@ This repository contains a redacted version of my internship presentation and a 
 
 ## Project focus
 
-My internship work centered on building and improving document review workflows. The goal was to make it easier to move from raw documents to useful review outputs by extracting relevant information, presenting it clearly, and making the results easier to verify.
+My internship work centered on building an end-to-end data and machine learning workflow. A major part of the project was taking raw data spread across multiple SQL tables and joining it together across multiple days to create a usable dataset for modeling.
+
+I also worked on a document review app that helped make review workflows more efficient by extracting relevant information, presenting it clearly, and making the results easier to verify.
 
 ## End-to-end process
 
 The project followed an end-to-end workflow:
 
-1. Ingest documents or source files into the application.
-2. Extract text and structured information from the uploaded content.
-3. Clean and normalize the extracted data so it could be reviewed consistently.
-4. Identify important sections, patterns, or fields for downstream review.
-5. Present the results in a document review interface.
-6. Validate the output against the original document.
-7. Iterate on the pipeline to improve accuracy, speed, and usability.
+1. Understand the available data sources and how the SQL tables related to each other.
+2. Join data from multiple tables across multiple days to create one consistent modeling dataset.
+3. Clean and normalize the data so each row could be used reliably for machine learning.
+4. Engineer features from the joined dataset and prepare the target variable.
+5. Train and compare different machine learning models.
+6. Evaluate results and interpret which model choices made sense for the size and quality of the dataset.
+7. Iterate on the pipeline to improve data quality, model performance, and usability.
 
-This process helped connect the technical backend work with the user-facing review experience. Each step affected the next one, so improvements to parsing, formatting, or performance directly improved the quality of the final review workflow.
+This process helped me understand how much of machine learning work happens before model training. The SQL joins, data cleaning, and dataset construction were just as important as the modeling step because the models could only perform well if the training data was reliable.
+
+## Machine learning work
+
+After building a usable dataset, I experimented with several modeling approaches, including logistic regression and random forest models. Logistic regression provided a simpler and more interpretable baseline, while random forest gave me a way to test a more flexible non-linear model.
+
+I also considered the tradeoff between model complexity and dataset size. More heavyweight models might have worked with more data, but the dataset was relatively small, so simpler models were more practical and easier to evaluate responsibly. This helped me focus on choosing models that matched the data instead of defaulting to the most complex option.
 
 ## Document review app
 
@@ -38,10 +46,11 @@ Core areas of work included:
 
 ## Optimizations
 
-Optimization was an important part of the project. The work was not only about making the app faster, but also about reducing repeated processing, improving reliability, and making the review experience feel smoother.
+Optimization was an important part of both the data pipeline and the document review app. The work was not only about making things faster, but also about reducing repeated processing, improving reliability, and making the outputs easier to trust.
 
 Examples of optimization work included:
 
+- Improving SQL joins and data preparation steps so the final ML dataset was more usable.
 - Streamlining document processing steps.
 - Reducing unnecessary recomputation during review.
 - Improving how extracted text was organized before display.
@@ -50,8 +59,8 @@ Examples of optimization work included:
 
 ## What I learned
 
-This internship helped me better understand how to build a complete application workflow, not just isolated features. I learned how document ingestion, extraction, processing, interface design, and validation all connect in an end-to-end product.
+This internship helped me better understand how to build a complete data and application workflow, not just isolated features. I learned how raw SQL data, data cleaning, feature preparation, model training, evaluation, and application design all connect in an end-to-end product.
 
-I also learned that verification is central to document review tools. A result is only useful if a user can trace it back to the source and decide whether it is accurate. That shaped how I thought about transparency, output formatting, and user trust.
+I also learned that model selection depends heavily on the dataset. Logistic regression and random forest were useful because they fit the scale of the data and gave me interpretable ways to compare performance. With a small dataset, heavier models could have overcomplicated the project without necessarily improving the result.
 
-Finally, I learned that optimization includes both technical and product improvements. Faster processing matters, but so do clearer results, fewer manual steps, better error handling, and a smoother review experience.
+Finally, I learned that verification is central to both machine learning and document review tools. A result is only useful if a user can understand where it came from and decide whether it is accurate. That shaped how I thought about transparency, output formatting, user trust, and responsible model evaluation.
